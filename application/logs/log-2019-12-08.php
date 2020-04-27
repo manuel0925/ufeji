@@ -1,0 +1,31 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+
+ERROR - 2019-12-08 01:02:42 --> 404 Page Not Found: Examplecom/index
+ERROR - 2019-12-08 01:02:42 --> 404 Page Not Found: 169254169254/index
+ERROR - 2019-12-08 01:02:43 --> 404 Page Not Found: 169254169254/latest
+ERROR - 2019-12-08 01:02:43 --> 404 Page Not Found: Latest/dynamic
+ERROR - 2019-12-08 01:02:44 --> 404 Page Not Found: Latest/dynamic
+ERROR - 2019-12-08 01:08:00 --> 404 Page Not Found: TP/public
+ERROR - 2019-12-08 01:08:02 --> 404 Page Not Found: TP/index.php
+ERROR - 2019-12-08 01:08:02 --> 404 Page Not Found: Thinkphp/html
+ERROR - 2019-12-08 01:08:03 --> 404 Page Not Found: Html/public
+ERROR - 2019-12-08 01:08:03 --> 404 Page Not Found: Public/index.php
+ERROR - 2019-12-08 01:08:04 --> 404 Page Not Found: TP/html
+ERROR - 2019-12-08 01:08:05 --> 404 Page Not Found: Elrektphp/index
+ERROR - 2019-12-08 07:52:22 --> 404 Page Not Found: GponForm/diag_Form
+ERROR - 2019-12-08 10:46:12 --> 404 Page Not Found: Sitemapxml/index
+ERROR - 2019-12-08 10:46:12 --> 404 Page Not Found: Well-known/security.txt
+ERROR - 2019-12-08 12:56:58 --> 404 Page Not Found: Examplecom/index
+ERROR - 2019-12-08 12:56:58 --> 404 Page Not Found: 169254169254/index
+ERROR - 2019-12-08 12:56:58 --> 404 Page Not Found: 169254169254/latest
+ERROR - 2019-12-08 12:56:59 --> 404 Page Not Found: Latest/dynamic
+ERROR - 2019-12-08 12:56:59 --> 404 Page Not Found: Latest/dynamic
+ERROR - 2019-12-08 15:42:18 --> 404 Page Not Found: TP/public
+ERROR - 2019-12-08 15:42:18 --> 404 Page Not Found: TP/index.php
+ERROR - 2019-12-08 15:42:19 --> 404 Page Not Found: Thinkphp/html
+ERROR - 2019-12-08 15:42:20 --> 404 Page Not Found: Html/public
+ERROR - 2019-12-08 15:42:20 --> 404 Page Not Found: Public/index.php
+ERROR - 2019-12-08 15:42:22 --> 404 Page Not Found: TP/html
+ERROR - 2019-12-08 15:42:22 --> 404 Page Not Found: Elrektphp/index
+ERROR - 2019-12-08 22:15:19 --> 404 Page Not Found: Admin/config.php
+ERROR - 2019-12-08 23:33:40 --> 404 Page Not Found: Manager/text

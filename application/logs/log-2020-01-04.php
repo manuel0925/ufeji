@@ -1,0 +1,29 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+
+ERROR - 2020-01-04 00:16:36 --> 404 Page Not Found: Examplecom/index
+ERROR - 2020-01-04 00:16:36 --> 404 Page Not Found: 169254169254/index
+ERROR - 2020-01-04 00:16:36 --> 404 Page Not Found: 169254169254/latest
+ERROR - 2020-01-04 00:16:37 --> 404 Page Not Found: Latest/dynamic
+ERROR - 2020-01-04 00:16:37 --> 404 Page Not Found: Latest/dynamic
+ERROR - 2020-01-04 00:31:13 --> 404 Page Not Found: TP/public
+ERROR - 2020-01-04 00:31:13 --> 404 Page Not Found: TP/index.php
+ERROR - 2020-01-04 00:31:13 --> 404 Page Not Found: Thinkphp/html
+ERROR - 2020-01-04 00:31:13 --> 404 Page Not Found: Html/public
+ERROR - 2020-01-04 00:31:13 --> 404 Page Not Found: Public/index.php
+ERROR - 2020-01-04 00:31:13 --> 404 Page Not Found: TP/html
+ERROR - 2020-01-04 00:31:14 --> 404 Page Not Found: Elrektphp/index
+ERROR - 2020-01-04 00:32:15 --> 404 Page Not Found: TP/public
+ERROR - 2020-01-04 00:32:15 --> 404 Page Not Found: TP/index.php
+ERROR - 2020-01-04 00:32:16 --> 404 Page Not Found: Thinkphp/html
+ERROR - 2020-01-04 00:32:16 --> 404 Page Not Found: Html/public
+ERROR - 2020-01-04 00:32:17 --> 404 Page Not Found: Public/index.php
+ERROR - 2020-01-04 00:32:17 --> 404 Page Not Found: TP/html
+ERROR - 2020-01-04 00:32:18 --> 404 Page Not Found: Elrektphp/index
+ERROR - 2020-01-04 04:08:53 --> 404 Page Not Found: Cgi-bin/hi3510
+ERROR - 2020-01-04 07:12:30 --> 404 Page Not Found: TP/public
+ERROR - 2020-01-04 13:37:35 --> 404 Page Not Found: Examplecom/index
+ERROR - 2020-01-04 13:37:35 --> 404 Page Not Found: 169254169254/index
+ERROR - 2020-01-04 13:37:35 --> 404 Page Not Found: 169254169254/latest
+ERROR - 2020-01-04 13:37:36 --> 404 Page Not Found: Latest/dynamic
+ERROR - 2020-01-04 13:37:36 --> 404 Page Not Found: Latest/dynamic
+ERROR - 2020-01-04 14:28:46 --> 404 Page Not Found: Wp-loginphp/index
