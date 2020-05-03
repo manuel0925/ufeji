@@ -14,7 +14,7 @@ class Login_model extends CI_Model {
     `tbl_miembros`.`contrasena`,
     `tbl_miembros`.`cargo`,
     `tbl_miembros`.`activo`
-     FROM `u320591076_ufeji`.`tbl_miembros` where `tbl_miembros`.`correo`='$obj->email';
+     FROM `UFEJI_DB`.`tbl_miembros` where `tbl_miembros`.`correo`='$obj->email';
     ";
 
         $result = $this->db->query($query);
