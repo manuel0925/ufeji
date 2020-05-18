@@ -20,9 +20,23 @@ class Inicio_admin extends CI_Controller {
      * @see https://codeigniter.com/user_guide/general/urls.html
      */
     public function index() {
+        
+        if ($this->session->id > 0) {
+
+
+            $datos_usuarios = new stdClass();
+
+
+            foreach ($this->session->userdata() as $key => $value) {
+                $datos_usuarios->$key = $value;
+            }
+
+
+            $data['datos_sesion_usuario'] = (array) $datos_usuarios;
+        }
+
 
         $this->load->view('inicio/inicio_admin');
-        
     }
 
 }

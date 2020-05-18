@@ -1,3 +1,6 @@
+</div>
+</div>
+
 <style>
     #facebook:hover{
         color: #3b5998;

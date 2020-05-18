@@ -8,30 +8,33 @@ class Login_model extends CI_Model {
 
     public function loginUsuario($obj) {
 
-        $query = "SELECT `tbl_miembros`.`id`,
-    `tbl_miembros`.`nombre_completo`,
-    `tbl_miembros`.`apellido`,
-    `tbl_miembros`.`contrasena`,
-    `tbl_miembros`.`cargo`,
-    `tbl_miembros`.`activo`
-     FROM `UFEJI_DB`.`tbl_miembros` where `tbl_miembros`.`correo`='$obj->email';
+        $query = "SELECT M.id,
+    M.nombre_completo,
+    M.apellido,
+    M.contrasena,
+    M.cargo,
+    M.activo,
+    CONCAT(F.UBUCACION_ASOCIATIVO,F.NOMBRE_ARCHIVO,'.png') as img
+    
+     FROM UFEJI_DB.tbl_miembros AS M LEFT JOIN UFEJI_DB.FOTO F ON (M.id=F.ID_ASOCIATIVO) WHERE 	M.correo='$obj->email';
     ";
 
         $result = $this->db->query($query);
 
+
+        log_message('ERROR', $query . "loginUsuario\n<pre>" . print_r($result, TRUE) . "</pre>");
+        
         $filas = $result->num_rows();
         if ($filas > 0) {
-             $result = $result->result_array();
-             if(password_verify($obj->pass,$result[0]['contrasena'])){
-                 return $result;
-             }else{
-                 return 0;
-             }
+            $result = $result->result_array();
+            if (password_verify($obj->pass, $result[0]['contrasena'])) {
+                return $result;
+            } else {
+                return 0;
+            }
         } else {
             return $filas;
         }
-        
-        
     }
 
 }

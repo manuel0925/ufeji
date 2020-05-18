@@ -23,3 +23,16 @@ $("#btn-cerrar-sesion").on('click', function () {
             });
 });
 
+
+$(".menu_item").click(function () {
+
+    var menu = $(this).attr('name');
+    
+    menu = btoa(menu);
+    
+    $(".contenedor-pagina-load").load("inicio/cargar_pagina_menu/" + menu, function () {
+
+    });
+
+
+});

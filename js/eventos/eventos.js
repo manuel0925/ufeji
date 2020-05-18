@@ -2,38 +2,26 @@
 
 var $tabla_usuario = $("#tabla_administrar_usuarios").DataTable({
 
-    "sAjaxSource": 'usuarios/datosTablaUsuarios',
+    "sAjaxSource": 'eventos/datosTablaEvento',
     "columns": [
-        {"data": null, className: "text-center"},
-        {"data": null, className: "text-center"},
-        {"data": null, className: "text-center"},
-        {"data": "telefono", className: "text-center"},
-        {"data": "correo", className: "text-center"},
-        {"data": "titulo", className: "text-center"},
-        {"data": "ocupacion", className: "text-center"},
-        {"data": "cargo", className: "text-center"},
-        {"data": null, className: 'text-center'},
+        {"data": null, className: "text-center", "orderable": false},
+        {"data": "TITULO", className: "text-center", "orderable": false},
+        {"data": "SUBTITULO", className: "text-center", "orderable": false},
+        {"data": "CATEGORIA", className: "text-center", "orderable": false},
+        {"data": "NOMBRE", className: "text-center", "orderable": false},
+        {"data": "FECHA_EVENTO", className: "text-center", "orderable": false},
+        {"data": "FECHA_LIMITE", className: "text-center", "orderable": false},
+        {"data": "PRECIO", className: "text-center", "orderable": false},
+        {"data": null, className: 'text-center', "orderable": false},
     ],
     "aoColumnDefs": [
         {
             "aTargets": [0],
             "mRender": function (data, type, full) {
-                return (full.estado == 1) ? '<h5><span class="label label-success">000' + full.id + '</span></h5>' : '<h5><span class="label label-danger">000' + full.id + '</span></h5>';
+                return (full.ACTIVO == 1) ? '<h5><span class="label label-success">000' + full.ID + '</span></h5>' : '<h5><span class="label label-danger">000' + full.id + '</span></h5>';
             }
         },
-        {
-            "aTargets": [1],
-            "mRender": function (data, type, full) {
-                var foto = (full.FOTO == null) ? "data/img/usuario/guest.png" : full.FOTO;
-                return '<a href="javascript:void(0);" class="btn_subir_foto img-rounded height-30" id="' + full.id + '"><div style="width:50px;"><img src="' + foto + '" style="width:100%; border-radius:7px;"></div></a>';
-            }
-        },
-        {
-            "aTargets": [2],
-            "mRender": function (data, type, full) {
-                return (full.genero == "M") ? '<h5><span name="' + full.id + '" class="label label-primary">' + full.nombre + '</span></h5>' : '<h5><span class="label label-pink">' + full.nombre + '</span></h5>';
-            }
-        },
+
         {
             "aTargets": [8],
             "mRender": function (data, type, full) {
@@ -54,7 +42,7 @@ var $tabla_usuario = $("#tabla_administrar_usuarios").DataTable({
         {
 //                            "extend": "text",
             "className": "btn btn-labeled btn-success",
-            "text": '<span class="btn-label"><i class="fa fa-plus"></i></span>&nbsp;Agregar Usuarios',
+            "text": '<span class="btn-label"><i class="fa fa-plus"></i></span>&nbsp;Agregar Evento',
             "action": function (nButton, oConfig, oFlash) {
 
 

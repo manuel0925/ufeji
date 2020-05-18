@@ -9,21 +9,25 @@
 class Usuarios_model extends CI_Model {
 
     public function cargarDatosTablaUsuario() {
-        $query = "SELECT `tbl_miembros`.`id`,
-    `tbl_miembros`.`imgen_usuario`,
-    `tbl_miembros`.`nombre_completo`,
-    `tbl_miembros`.`apellido`,
-    `tbl_miembros`.`genero`,
-    `tbl_miembros`.`telefono`,
-    `tbl_miembros`.`cedula`,
-    `tbl_miembros`.`correo`,
-    `tbl_miembros`.`titulo`,
-    `tbl_miembros`.`ocupacion`,
-    #`tbl_miembros`.`cargo`,
-    `tbl_miembros`.`activo`,
-    `tbl_cargo`.`nombre_cargo` as cargo
-    
-    FROM `u320591076_ufeji`.`tbl_miembros` inner join `u320591076_ufeji`.`tbl_cargo` on `tbl_miembros`.`cargo`= `tbl_cargo`.`id_cargo`";
+        $query = "SELECT 
+    M.id,
+    CONCAT(M.nombre_completo, ' ', M.apellido) AS nombre,
+    M.telefono,
+    M.correo,
+    M.titulo,
+    M.ocupacion,
+    C.nombre_cargo AS cargo,
+    M.activo AS estado,
+    M.genero,
+    CONCAT(F.UBUCACION_ASOCIATIVO,
+            F.NOMBRE_ARCHIVO,
+            '.png') AS FOTO
+FROM
+    tbl_miembros AS M
+        JOIN
+    tbl_cargo AS C ON (M.cargo = C.id_cargo)
+        LEFT JOIN
+    FOTO AS F ON (F.ID_ASOCIATIVO = M.id); ";
 
         $resultado = $this->db->query($query);
 
@@ -44,12 +48,24 @@ class Usuarios_model extends CI_Model {
     `tbl_miembros`.`titulo`,
     `tbl_miembros`.`ocupacion`,
     `tbl_miembros`.`cargo`,
-    `tbl_miembros`.`activo`
-     FROM `u320591076_ufeji`.`tbl_miembros` WHERE `tbl_miembros`.`id`= '$id'";
+     if(`tbl_miembros`.`activo`=TRUE,'S','N') AS estado
+     FROM `UFEJI_DB`.`tbl_miembros` WHERE `tbl_miembros`.`id`= '$id'";
 
         $resultado = $this->db->query($query);
 
         $resultado = $resultado->result_array();
+        log_message('ERROR', $query . "\n<pre>" . print_r($resultado, TRUE) . "</pre>");
+        return $resultado;
+    }
+
+    public function cargarDatosCargo() {
+        $query = "SELECT id_cargo,nombre_cargo FROM UFEJI_DB.tbl_cargo;";
+
+        $resultado = $this->db->query($query);
+
+        $resultado = $resultado->result_array();
+
+        log_message('ERROR', $query . "\n<pre>" . print_r($resultado, TRUE) . "</pre>");
 
         return $resultado;
     }
@@ -64,9 +80,9 @@ class Usuarios_model extends CI_Model {
         return $resultado;
     }
 
-    public function modificarUsuario($obj) {
+    public function editarUsuario($obj) {
         $usuario_id = $this->session->userdata('id');
-        $query = "UPDATE `u320591076_ufeji`.`tbl_miembros`
+        $query = "UPDATE `UFEJI_DB`.`tbl_miembros`
 SET
 `nombre_completo` = '$obj->nombre',
 `apellido` = '$obj->apellido',
@@ -77,37 +93,29 @@ SET
 `titulo` = '$obj->titulo',
 `ocupacion` = '$obj->ocupacion',
 `cargo` ='$obj->cargo',
-`activo` = '$obj->activo',
-`creado_por` = '',
-`fecha_creacion` = CURDATE(),
+`activo` = $obj->estado,
+`creado_por` = '$usuario_id',
+`fecha_creacion` = NOW(),
 `modificado_por` = '$usuario_id',
-`fecha_modificacion` = CURDATE()
+`fecha_modificacion` = NOW()
 WHERE `id` = '$obj->id';";
 
+
         $resultado = $this->db->query($query);
-        if ($obj->query_mode == 'R') {
-
-            $resultado = $resultado->result_array();
-        } else {
-            $resultado = $this->db->error();
-        }
 
 
-
-        log_message('ERROR', 'modificarUsuario_CONSULTA\n<pre> ' . print_r($query, true) . '</pre>');
-
-        log_message('ERROR', 'modificarUsuario_RESULTADO\n<pre> ' . print_r($resultado, true) . '</pre>');
-
-
-
+        log_message('ERROR', $query . 'editarUsuario\n<pre> ' . print_r($resultado, true) . '</pre>');
 
 
         return $resultado;
     }
 
     public function agregarUsuario($obj) {
-        $query = "INSERT INTO `u320591076_ufeji`.`tbl_miembros`
-(`id`,
+
+        $usuario_id = $this->session->userdata('id');
+
+        $query = "INSERT INTO `UFEJI_DB`.`tbl_miembros`
+(
 `nombre_completo`,
 `apellido`,
 `genero`,
@@ -119,36 +127,49 @@ WHERE `id` = '$obj->id';";
 `ocupacion`,
 `cargo`,
 `activo`,
-`imgen_usuario`,
 `creado_por`,
 `fecha_creacion`,
 `modificado_por`,
 `fecha_modificacion`)
 VALUES
-('$obj->' ,
- '$obj->',
- '$obj->',
- '$obj->',
- '$obj->',
- '$obj->',
- '$obj->',
- '$obj->',
- '$obj->',
- '$obj->',
- '$obj->',
- '$obj->',
- '$obj->',
- '$obj->',
- '$obj->',
- '$obj->',
+('$obj->nombre' ,
+ '$obj->apellido',
+ '$obj->genero',
+ '$obj->telefono',
+ '$obj->cedula',
+ '$obj->email',
+ '$obj->pass_confirmacion',
+ '$obj->titulo',
+ '$obj->ocupacion',
+ '$obj->cargo',
+ $obj->estado,
+ '$usuario_id',
+  NOW(),
+ '$usuario_id',
+ NOW()
  );";
 
-        //$resultado = $this->db->query($query);
+        $resultado = $this->db->query($query);
 
-        //$resultado = $resultado->result_array();
-        
+
         log_message('ERROR', $query . "\n<pre>" . print_r($resultado, TRUE) . "</pre>");
-        
+
+        return $resultado;
+    }
+
+    public function agregar_info_imagen($obj) {
+        $usuario_id = $this->session->userdata('id');
+        $query = "INSERT INTO FOTO(ID,ID_ASOCIATIVO,UBUCACION_ASOCIATIVO,NOMBRE_ARCHIVO,CATEGORIA,CREADO_POR,CREADO_EN,MODIFICADO_POR,MODIFICADO_EN,ESTADO)
+VALUE( '$obj->usuario_id' ,'$obj->usuario_id', '$obj->dir', '$obj->nombre_fichero', '$obj->categoria' ,'$usuario_id', NOW(), '$usuario_id' ,NOW() ,TRUE)
+                 ON DUPLICATE KEY UPDATE NOMBRE_ARCHIVO ='$obj->nombre_fichero', MODIFICADO_POR='$usuario_id', MODIFICADO_EN=NOW();";
+
+
+        $resultado = $this->db->query($query);
+
+
+
+        log_message('ERROR', $query . "\n<pre>" . print_r($resultado, TRUE) . "</pre>");
+
         return $resultado;
     }
 

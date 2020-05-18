@@ -36,6 +36,9 @@ class Usuarios extends CI_Controller {
     }
 
     public function getModalUsuarios($id = 0) {
+
+
+        $data['cargos'] = $this->Usuarios_model->cargarDatosCargo();
         $data['datos_usuarios'] = '';
         if ($id !== 0) {
             $id = base64_decode(base64_decode(base64_decode($id)));
@@ -45,31 +48,202 @@ class Usuarios extends CI_Controller {
         $this->load->view('usuarios/modal/modal_modificar_agregar_usuario', $data);
     }
 
-    public function getModalCargarFoto() {
+    public function getModalCargarFoto($usuario_id, $categoria) {
 
-        $this->load->view('usuarios/modal/agregar_foto_modal');
+        $usuario_id = base64_decode(base64_decode(base64_decode($usuario_id)));
+
+        $data["usuario_id"] = $usuario_id;
+        $data["categoria"] = $categoria;
+
+
+        $this->load->view('usuarios/modal/agregar_foto_modal', $data);
     }
 
     public function cargarArchivoAjax() {
 
+        $codigo = 500;
+        $mensaje = 'error';
 
-        if (array_key_exists('HTTP_X_FILE_NAME', $_SERVER) && array_key_exists('CONTENT_LENGTH', $_SERVER)) {
-            $fileName = $_SERVER['HTTP_X_FILE_NAME'];
-            $contentLength = $_SERVER['CONTENT_LENGTH'];
-        } else
-            throw new Exception("Error recuperando la cabecera");
-//Error retrieving headers
-        $path = 'data/foto_perfil/';
-//No file uploaded
-        if (!$contentLength > 0) {
-            throw new Exception('Ningún archivo subido!');
+        $obj = new stdClass();
+
+        foreach ($this->input->post() as $key => $value) {
+            $obj->$key = $value;
         }
 
-        file_put_contents(
-                $path . $fileName, file_get_contents("php://input")
+        $obj->dir = "data/img/" . $obj->categoria . "/";
+
+
+
+
+        if (!file_exists($obj->dir)) {
+            if (mkdir($obj->dir, 0777)) {
+                if (chmod($obj->dir, 0777)) {
+
+                    $fichero = $this->procesar_imgen($obj);
+                }
+            }
+        } else {
+            $fichero = $this->procesar_imgen($obj);
+        }
+
+        if ($fichero) {
+            // die($fichero);
+            $obj->nombre_fichero = $obj->usuario_id;
+            $obj->categoria = ($obj->categoria == 'usuario') ? "1" : "99";
+            $resultado = $this->Usuarios_model->agregar_info_imagen($obj);
+        }
+
+        if ($resultado === true) {
+            $codigo = 0;
+            $mensaje = "Imagen guardarda con exito";
+        }
+//      
+        echo json_encode(array('mensaje' => $mensaje, 'codigo' => $codigo));
+    }
+
+    public function check_default($array) {
+        foreach ($array as $element) {
+            if ($element == '0') {
+                return FALSE;
+            }
+        }
+        return TRUE;
+    }
+
+    public function procesar_imgen($obj) {
+        $img = $obj->imge_B64;
+        $img = str_replace('data:image/png;base64,', '', $img);
+        $img = str_replace(' ', '+', $img);
+        $data = base64_decode($img);
+        $file = $obj->dir . $obj->usuario_id . '.png';
+        $success = file_put_contents($file, $data);
+        if ($success) {
+            if (chmod($file, 0777)) {
+                return $file;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    public function guardar_usuario() {
+        $this->load->library('form_validation');
+
+        $codigo = 500;
+        $mensaje = 'error';
+
+
+
+
+
+
+        $config = array(
+            array(
+                "field" => "nombre",
+                "label" => "Nombre",
+                "rules" => "required"
+            ),
+            array(
+                "field" => "apellido",
+                "label" => "Apellido",
+                "rules" => "required"
+            ),
+            array(
+                "field" => "genero",
+                "label" => "Genero",
+                "rules" => "required"
+            ),
+            array(
+                "field" => "cedula",
+                "label" => "Cedula",
+                "rules" => "required"
+            ),
+            array(
+                "field" => "email",
+                "label" => "Correo",
+                "rules" => "required"
+            ),
+            array(
+                "field" => "telefono",
+                "label" => "Telefono",
+                "rules" => "required"
+            ),
+            array(
+                "field" => "titulo",
+                "label" => "Titulo",
+                "rules" => "required"
+            ),
+            array(
+                "field" => "cargo",
+                "label" => "Nombre",
+                "rules" => "required"
+            ),
+            array(
+                "field" => "ocupacion",
+                "label" => "Ocupacion",
+                "rules" => "required"
+            ),
+            array(
+                "filed" => "estado",
+                "label" => "Estado",
+                "rules" => "required"
+            )
         );
 
-        chmod($path . $fileName, 0777);
+        $array_passs_rules = array(
+            array(
+                "field" => "pass",
+                "label" => "Confirmar contraseña",
+                "rules" => "required"
+            ),
+            array(
+                "field" => "pass_confirmacion",
+                "label" => "Confirmar contraseña",
+                "rules" => "required|matches[pass]"
+            )
+        );
+
+        if ((int) $this->input->post("id") == 0) {
+
+            $config = array_merge($config, $array_passs_rules);
+        }
+
+
+        $this->form_validation->set_rules($config);
+
+        if ($this->input->server('REQUEST_METHOD') === 'POST') {
+            if ($this->form_validation->run() == TRUE) {
+
+
+
+                $obj = new stdClass();
+
+                foreach ($this->input->post() as $key => $value) {
+                    $obj->$key = $value;
+                }
+
+                $obj->estado = ($obj->estado == "S") ? "TRUE" : "FALSE";
+                $obj->pass_confirmacion = password_hash($obj->pass_confirmacion, PASSWORD_DEFAULT);
+
+
+                if ($obj->id > 0) {
+                    $resultado = $this->Usuarios_model->editarUsuario($obj);
+                } else {
+                    $resultado = $this->Usuarios_model->agregarUsuario($obj);
+                }
+
+
+                if ($resultado) {
+                    $codigo = 0;
+                    $mensaje = "Usuario guardarda con exito";
+                }
+            } else {
+                $mensaje = $this->form_validation->error_string();
+            }
+        }
+
+
+        echo json_encode(array('mensaje' => $mensaje, 'codigo' => $codigo));
     }
 
 }

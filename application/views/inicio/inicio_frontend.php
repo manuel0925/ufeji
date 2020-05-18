@@ -2,7 +2,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12 my-4 border-top border-bottom pt-4">
-            <h1 class="pagina_titulo text-center">union de formacion y educacion juridica e institucionalvcv</h1>
+            <h1 class="pagina_titulo text-center">union de formacion y educacion juridica e institucional</h1>
             <p class="text-center subtitulo_pagina">Educacion que Forma</p>
         </div>   
     </div>
@@ -68,7 +68,6 @@
         </a>
     </div>
     <!-- END carousel -->
-</div>
 </div>
 <!-- END #slider -->
 <div class="container">

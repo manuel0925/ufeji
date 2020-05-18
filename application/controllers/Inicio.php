@@ -21,30 +21,33 @@ class Inicio extends CI_Controller {
      */
     public function index() {
 
-        
+
 
         if ($this->session->id > 0) {
-            
-            
+
+
             $datos_usuarios = new stdClass();
-            
-            
+
+
             foreach ($this->session->userdata() as $key => $value) {
                 $datos_usuarios->$key = $value;
             }
-            
-            
+
+
             $data['datos_sesion_usuario'] = (array) $datos_usuarios;
-            
-            
         }
 
 
-        $this->load->view("inicio/head",$data);
-        $this->load->view("inicio/menu",$data);
-        $this->load->view("inicio/inicio_frontend",$data);
-        $this->load->view("inicio/footer",$data);
-        
+        $this->load->view("inicio/head", $data);
+        $this->load->view("inicio/menu", $data);
+        $this->load->view("inicio/inicio_frontend", $data);
+        $this->load->view("inicio/footer", $data);
+    }
+
+    public function cargar_pagina_menu($menu) {
+        $menu = base64_decode($menu);
+
+        $this->load->view($menu."_frontend/" . $menu, $data);
     }
 
 }

@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '18.189.210.93',
-	'username' => 'root',
-	'password' => 'manuelito',
-	'database' => 'u320591076_ufeji',
+	'hostname' => '127.0.0.1:3306',
+	'username' => 'MANUEL',
+	'password' => 'emely430615',
+	'database' => 'UFEJI_DB',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
