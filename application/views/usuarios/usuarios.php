@@ -7,7 +7,7 @@
 
 <!-- end breadcrumb -->
 <!-- begin page-header -->
-<h1 class="page-header">Usuarios <small> >Administrar Usuarios</small></h1>
+<h1 class="page-header">Usuarios <small id="prueba"> >Administrar Usuarios</small></h1>
 <!-- end page-header -->
 <!-- begin panel -->
 <div class="panel panel-inverse">
@@ -88,6 +88,8 @@
 
 
 
-
+$("#prueba").click(function(){
+    alert("d");
+});
 </script>
 <!-- ================== END PAGE LEVEL JS ================== -->

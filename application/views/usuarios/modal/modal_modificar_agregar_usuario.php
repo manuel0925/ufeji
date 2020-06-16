@@ -21,7 +21,7 @@
         <div class="form-group row m-b-15">
             <label class="col-md-2 col-sm-4 col-form-label" for="fullname">Apellido <stron style="color:red"> *</stron></label>
             <div class="col-md-10 col-sm-8">
-                <input class="form-control" type="text" id="apellido" name="apellido"  required="true" value="<?php echo $datos_usuarios[0]["apellido"] ?>"/>
+                <input class="form-control" type="text" id="apellido" name="apellido" required="true" value="<?php echo $datos_usuarios[0]["apellido"] ?>" />
             </div>
         </div>
 
@@ -29,11 +29,11 @@
             <label class="col-md-2 col-sm-4 col-form-label">Genero <stron style="color:red"> *</stron></label>
             <div class="col-md-10 col-sm-8">
                 <div class="radio radio-css radio-inline">
-                    <input  type="radio" name="genero" id="masculino" value="M" checked=""  class="genero" <?php echo ($datos_usuarios[0]["genero"] == 'M') ? "checked" : "" ?>>
+                    <input type="radio" name="genero" id="masculino" value="M" checked="" class="genero" <?php echo ($datos_usuarios[0]["genero"] == 'M') ? "checked" : "" ?>>
                     <label for="masculino">Masculino</label>
                 </div>
                 <div class="radio radio-css radio-inline">
-                    <input  type="radio" name="genero" id="femenino" value="F"  class="genero" <?php echo ($datos_usuarios[0]["genero"] == 'F') ? "checked" : ""; ?>>
+                    <input type="radio" name="genero" id="femenino" value="F" class="genero" <?php echo ($datos_usuarios[0]["genero"] == 'F') ? "checked" : ""; ?>>
                     <label for="femenino">Femenino</label>
                 </div>
             </div>
@@ -62,14 +62,14 @@
 
 
         <div class="form-group row m-b-15">
-            <label class="col-md-2 col-sm-4 col-form-label" for="email">Correo  <stron style="color:red"> *</stron></label>
+            <label class="col-md-2 col-sm-4 col-form-label" for="email">Correo <stron style="color:red"> *</stron></label>
             <div class="col-md-10 col-sm-8">
                 <input class="form-control" type="text" id="email" name="email" data-parsley-type="email" required="true" value="<?php echo $datos_usuarios[0]["correo"] ?>" />
             </div>
         </div>
         <?php if ($datos_usuarios[0]["id"] == 0) { ?>
             <div class="form-group row m-b-15">
-                <label class="col-md-2 col-sm-4 col-form-label" for="email">Contraseña  <stron style="color:red"> *</stron></label>
+                <label class="col-md-2 col-sm-4 col-form-label" for="email">Contraseña <stron style="color:red"> *</stron></label>
                 <div class="col-md-10 col-sm-8">
                     <input class="form-control" type="password" id="pass" name="pass" required="true" />
                 </div>
@@ -77,14 +77,14 @@
             <div class="form-group row m-b-15">
                 <label class="col-md-2 col-sm-4 col-form-label" for="email"> Confirmacion Contraseña * <stron style="color:red"> *</stron></label>
                 <div class="col-md-10 col-sm-8">
-                    <input class="form-control" type="password" id="pass_confirmacion" name="pass_confirmacion"   required="true" data-parsley-equalto="#pass" />
+                    <input class="form-control" type="password" id="pass_confirmacion" name="pass_confirmacion" required="true" data-parsley-equalto="#pass" />
                 </div>
             </div>
         <?php } ?>
         <div class="form-group row m-b-15">
-            <label class="col-md-2 col-sm-4 col-form-label" for="email">Titulo  <stron style="color:red"> *</stron></label>
+            <label class="col-md-2 col-sm-4 col-form-label" for="email">Titulo <stron style="color:red"> *</stron></label>
             <div class="col-md-10 col-sm-8">
-                <input class="form-control" type="text" id="titulo" name="titulo"  required="true" value="<?php echo $datos_usuarios[0]["titulo"] ?>" />
+                <input class="form-control" type="text" id="titulo" name="titulo" required="true" value="<?php echo $datos_usuarios[0]["titulo"] ?>" />
             </div>
         </div>
         <div class="form-group row m-b-15">
@@ -109,7 +109,7 @@
             <label class="col-md-2 col-sm-4 col-form-label" for="message">Estado <stron style="color:red"> *</stron></label>
             <div class="col-md-10 col-sm-8">
                 <select class="form-control" id="estado" name="estado" data-parsley-required="true">
-                    <option value="S" <?php echo ($datos_usuarios[0]["estado"] == 'S') ? "selected" : ""; ?> >Actvio</option>
+                    <option value="S" <?php echo ($datos_usuarios[0]["estado"] == 'S') ? "selected" : ""; ?>>Actvio</option>
                     <option value="N" <?php echo ($datos_usuarios[0]["estado"] == 'N') ? "selected" : ""; ?>>Inactivo</option>
                 </select>
             </div>
@@ -128,25 +128,18 @@
 
 <div class="modal-footer">
     <a href="javascript:;" class="btn btn-success" id="btn_guardar_cambios_agregar_usuario">Guardar Cambios <i class="fa fa-save"></i></a>
-    <a href="javascript:;" class="btn btn-danger" data-dismiss="modal">Cancelar  <i class="fa fa-times"></i></a>
+    <a href="javascript:;" class="btn btn-danger" data-dismiss="modal">Cancelar <i class="fa fa-times"></i></a>
 </div>
 
 <script>
-    //$('#telefono').mask('(8Z9) 0000-0000');
-    $('#telefono').mask('(8AB)000-0000', {
-        translation: {
-            'A': {
-                pattern: /[024]/, optional: true
-            },
-            'B': {
-                pattern: /[9]/, optional: true
-            }
-        }
+    $.mask.definitions['h']="[8]";
+    $.mask.definitions['i']="[049]";
+    $.mask.definitions['j']="[9]";
+    
+    jQuery(function($) {
+        $("#telefono").mask("(hij)999-9999");
+        $("#cedula").mask("999999999");
     });
-    $('#cedula').mask('00000000000');
 
     var $frm_modficar_agregar_usuario = $("#frm_modficar_agregar_usuario");
-
-
 </script>
-
