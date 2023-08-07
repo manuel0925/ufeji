@@ -73,7 +73,7 @@ class Usuarios extends CI_Controller {
         $obj->dir = "data/img/" . $obj->categoria . "/";
 
 
-
+        
 
         if (!file_exists($obj->dir)) {
             if (mkdir($obj->dir, 0777)) {
@@ -86,14 +86,11 @@ class Usuarios extends CI_Controller {
             $fichero = $this->procesar_imgen($obj);
         }
 
-        if ($fichero) {
-            // die($fichero);
-            $obj->nombre_fichero = $obj->usuario_id;
-            $obj->categoria = ($obj->categoria == 'usuario') ? "1" : "99";
-            $resultado = $this->Usuarios_model->agregar_info_imagen($obj);
-        }
+       
 
-        if ($resultado === true) {
+        
+
+        if ($fichero === true) {
             $codigo = 0;
             $mensaje = "Imagen guardarda con exito";
         }
@@ -101,14 +98,6 @@ class Usuarios extends CI_Controller {
         echo json_encode(array('mensaje' => $mensaje, 'codigo' => $codigo));
     }
 
-    public function check_default($array) {
-        foreach ($array as $element) {
-            if ($element == '0') {
-                return FALSE;
-            }
-        }
-        return TRUE;
-    }
 
     public function procesar_imgen($obj) {
         $img = $obj->imge_B64;
@@ -116,10 +105,23 @@ class Usuarios extends CI_Controller {
         $img = str_replace(' ', '+', $img);
         $data = base64_decode($img);
         $file = $obj->dir . $obj->usuario_id . '.png';
+
+        if(!file_exists($file)){
+            $obj->nombre_fichero = $obj->usuario_id;
+            $obj->categoria = numero_categoria($obj->categoria);
+            $resultado = $this->Usuarios_model->agregar_info_imagen($obj);
+            
+        }else{
+            $resultado= true;
+        }
+            
+        
+
+
         $success = file_put_contents($file, $data);
         if ($success) {
             if (chmod($file, 0777)) {
-                return $file;
+                return true;
             }
         } else {
             return false;

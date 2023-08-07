@@ -7,8 +7,8 @@ var $tabla_usuario = $("#tabla_administrar_usuarios").DataTable({
     { data: "SUBTITULO", className: "text-center", orderable: false },
     { data: "CATEGORIA", className: "text-center", orderable: false },
     { data: "NOMBRE", className: "text-center", orderable: false },
-    { data: null, className: "text-center", orderable: false },
-    { data: null, className: "text-center", orderable: false },
+    { data: "FECHA_EVENTO", className: "text-center", orderable: false },
+    { data: "FECHA_LIMITE", className: "text-center", orderable: false },
     { data: "PRECIO", className: "text-center", orderable: false },
     { data: null, className: "text-center", orderable: false },
   ],
@@ -28,28 +28,18 @@ var $tabla_usuario = $("#tabla_administrar_usuarios").DataTable({
     {
       aTargets: [1],
       mRender: function (data, type, full) {
-        var foto = full.FOTO == null ? "data/img/usuario/guest.png" : full.FOTO;
+        var foto = full.FOTO == null ? "data/img/usuarios/guest.png" : full.FOTO+ full.ID+".png?"+Math.random();
         return (
           '<a href="javascript:void(0);" data-categoria="eventos" class="btn_subir_foto img-rounded height-30" id="' +
-          full.id +
+          full.ID +
           '"><div style="width:50px;"><img src="' +
           foto +
           '" style="width:100%; border-radius:7px;"></div></a>'
         );
       },
     },
-    {
-      aTargets: [6],
-      mRender: function (data, type, full) {
-        return moment(full.FECHA_EVENTO, "YYYY-MM-DD").format("DD/MM/YYYY");
-      },
-    },
-    {
-      aTargets: [7],
-      mRender: function (data, type, full) {
-        return moment(full.FECHA_LIMITE, "YYYY-MM-DD").format("DD/MM/YYYY");
-      },
-    },
+    
+    
     {
       aTargets: [9],
       mRender: function (data, type, full) {
@@ -68,11 +58,11 @@ var $tabla_usuario = $("#tabla_administrar_usuarios").DataTable({
   preDrawCallback: function () {
     $(".dt-buttons").addClass("pull-right");
   },
-  buttons: [
+  "buttons": [
     {
       //                            "extend": "text",
-      className: "btn btn-labeled btn-success",
-      text:
+      "className": "btn btn-labeled btn-success",
+      "text":
         '<span class="btn-label"><i class="fa fa-plus"></i></span>&nbsp;Agregar Evento',
       action: function (nButton, oConfig, oFlash) {
         $(".modal_usuarios .modal-content").load(
@@ -86,8 +76,9 @@ var $tabla_usuario = $("#tabla_administrar_usuarios").DataTable({
         $(node).removeClass("dt-button");
       },
     },
+    
   ],
-  language: {
+  "language": {
     url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json",
   },
 });
@@ -154,7 +145,7 @@ $(".modal_agregar_foto_perfil").on("click", ".btn_subir_imagen", function () {
 
             $tabla_usuario.ajax.reload();
 
-            $(".modal_agregar_foto_perfil").modal("hide");
+            //$(".modal_agregar_foto_perfil").modal("hide");
           } else {
             swal({
               text: data.mensaje,

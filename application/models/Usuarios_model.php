@@ -9,7 +9,7 @@
 class Usuarios_model extends CI_Model {
 
     public function cargarDatosTablaUsuario() {
-        $query = "SELECT 
+        $query = "SELECT distinct
     M.id,
     CONCAT(M.nombre_completo, ' ', M.apellido) AS nombre,
     M.telefono,
@@ -159,16 +159,16 @@ VALUES
 
     public function agregar_info_imagen($obj) {
         $usuario_id = $this->session->userdata('id');
-        $query = "INSERT INTO FOTO(ID,ID_ASOCIATIVO,UBUCACION_ASOCIATIVO,NOMBRE_ARCHIVO,CATEGORIA,CREADO_POR,CREADO_EN,MODIFICADO_POR,MODIFICADO_EN,ESTADO)
-VALUE( '$obj->usuario_id' ,'$obj->usuario_id', '$obj->dir', '$obj->nombre_fichero', '$obj->categoria' ,'$usuario_id', NOW(), '$usuario_id' ,NOW() ,TRUE)
-                 ON DUPLICATE KEY UPDATE NOMBRE_ARCHIVO ='$obj->nombre_fichero', MODIFICADO_POR='$usuario_id', MODIFICADO_EN=NOW();";
+        $query = "INSERT INTO FOTO(ID_ASOCIATIVO,UBUCACION_ASOCIATIVO,NOMBRE_ARCHIVO,CATEGORIA,CREADO_POR,CREADO_EN,MODIFICADO_POR,MODIFICADO_EN,ESTADO)
+VALUE('$obj->usuario_id', '$obj->dir', '$obj->nombre_fichero', '$obj->categoria' ,'$usuario_id', NOW(), '$usuario_id' ,NOW() ,TRUE);";
+               
 
 
         $resultado = $this->db->query($query);
 
 
 
-        log_message('ERROR', $query . "\n<pre>" . print_r($resultado, TRUE) . "</pre>");
+        log_message('ERROR',"agregar_info_imagen\n" . $query . "\n<pre>" . print_r($resultado, TRUE) . "</pre>");
 
         return $resultado;
     }

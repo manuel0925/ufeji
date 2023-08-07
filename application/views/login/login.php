@@ -24,7 +24,7 @@
                 <!-- begin login-header -->
                 <div class="login-header">
                     <div class="brand">
-                        <span class="logo"></span> <b>UFEJI</b>
+                    <img src="../data/img/corporativo/logo-ufeji.png" width="40px" style="margin-right:10px"> <b>UFEJI</b>
                         <small>Educacion que Forma</small>
                     </div>
                     <div class="icon">
@@ -41,22 +41,18 @@
                         <div class="form-group m-b-15">
                             <input type="password" name="pass" class="form-control form-control-lg" placeholder="Contraseña" required />
                         </div>
-                        <div class="checkbox checkbox-css m-b-30">
-                            <input type="checkbox" name="remember" id="remember_me_checkbox" value="" />
-                            <label for="remember_me_checkbox">
-                                Recordar
-                            </label>
-                        </div>
+                        
                         <div class="login-buttons">
                             <input type="button" value="Iniciar Sesion" class="btn btn-success btn-block btn-lg" id="btn_inicio_de_sesion" />
 
                         </div>
                         <div class="m-t-20 m-b-40 p-b-40 text-inverse">
-                            ¿No eres miembro? haz click <a href="register_v3.html">aqui</a> para registrarse.
+                            ¿No eres miembro? haz click <a href="registrarse">aqui</a> para registrarse.<br>
+                            ¿No eres miembro? haz click <a href="../inicio">aqui</a> para ir a la pagina de inicio.
                         </div>
                         <hr />
                         <p class="text-center text-grey-darker mb-0">
-                            &copy;Ufeji todos los derechos reservados 2019
+                            &copy;Ufeji todos los derechos reservados <?php echo date("Y"); ?>
                         </p>
                     </form>
                 </div>

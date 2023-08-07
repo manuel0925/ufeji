@@ -11,7 +11,7 @@ class Eventos extends CI_Controller
         $this->load->model("Eventos_model");
     }
 
-    public function index()
+    public function admin_crud()
     {
         $this->load->view("eventos/eventos");
     }
@@ -54,7 +54,7 @@ class Eventos extends CI_Controller
         $mensaje = 'error';
 
 
-       
+
 
 
 
@@ -111,7 +111,7 @@ class Eventos extends CI_Controller
         if ($this->input->server('REQUEST_METHOD') === 'POST') {
             if ($this->form_validation->run() == TRUE) {
 
-               // die("llego");
+                // die("llego");
 
                 $obj = new stdClass();
 
@@ -120,7 +120,7 @@ class Eventos extends CI_Controller
                 }
 
                 $obj->activo = ($obj->activo == "on") ? "TRUE" : "FALSE";
-               
+
 
                 if ($obj->id > 0) {
                     $resultado = $this->Eventos_model->modificar_evento($obj);
@@ -141,9 +141,18 @@ class Eventos extends CI_Controller
 
         echo json_encode(array('mensaje' => $mensaje, 'codigo' => $codigo));
 
-       /* echo "<pre>";
+        /* echo "<pre>";
         print_r($this->input->post());
         echo "<pre>";
         die();*/
+    }
+
+
+    public function index()
+    {
+
+        $data["eventos"] = $this->Eventos_model->cargarDatosTablaEventos();
+
+        $this->load->view("eventos_frontend/eventos", $data);
     }
 }

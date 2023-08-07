@@ -24,8 +24,8 @@ var $tabla_usuario = $("#tabla_administrar_usuarios").DataTable({
         {
             "aTargets": [1],
             "mRender": function (data, type, full) {
-                var foto = (full.FOTO == null) ? "data/img/usuario/guest.png" : full.FOTO;
-                return '<a href="javascript:void(0);" class="btn_subir_foto img-rounded height-30" id="' + full.id + '"><div style="width:50px;"><img src="' + foto + '" style="width:100%; border-radius:7px;"></div></a>';
+                var foto = (full.FOTO == null) ? "data/img/usuarios/guest.png?"+ Math.random() : full.FOTO +"?"+ Math.random();
+                return '<a href="javascript:void(0);" data-categoria="usuarios" class="btn_subir_foto  img-rounded height-30" id="' + full.id + '"><div style="width:50px;"><img src="' + foto + '" style="width:100%; border-radius:7px;"></div></a>';
             }
         },
         {
@@ -86,7 +86,7 @@ $("#tabla_administrar_usuarios").on("click", ".btn_subir_foto", function () {
 
     var usuario_id = $(this).attr("id");
     usuario_id = btoa(btoa(btoa(usuario_id)));
-    var categoria = "usuario";
+    var categoria = $(this).attr("data-categoria");
 
 
     $('.modal_agregar_foto_perfil .modal-content').load('usuarios/getModalCargarFoto/' + usuario_id + '/' + categoria, function () {

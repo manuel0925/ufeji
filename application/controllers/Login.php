@@ -95,8 +95,8 @@ class Login extends CI_Controller {
 
         $this->session->sess_destroy();
 
-
-        echo json_encode(count($this->session->userdata()));
+        $this->load->view('login/login');
+        
     }
 
 }

@@ -1,5 +1,23 @@
-<?php include('inc/admin/head.php'); ?>
+<?php include('inc/admin/head.php');
+
+
+
+
+
+?>
+<style>
+    .MY_user-img{
+        width: 2.25rem !important;
+        height: 2.25rem;
+        /*        margin: .625rem .625rem .625rem 0 !important;*/
+        -webkit-border-radius: 120px !important;
+        border-radius: 120px !important;
+    }
+</style>
 <body>
+
+
+
     <!-- begin #page-loader -->
     <div id="page-loader" class="fade show"><span class="spinner"></span></div>
     <!-- end #page-loader -->
@@ -8,9 +26,9 @@
     <div id="page-container" class="page-container fade page-sidebar-fixed page-header-fixed">
         <!-- begin #header -->
         <div id="header" class="header navbar-default">
-           
+
             <div class="navbar-header">
-                <a href="index.html" class="navbar-brand"><span class="navbar-logo"></span> <b>UFEJI</b> </a>
+                <a href="inicio" class="navbar-brand"><img src="data/img/corporativo/logo-ufeji.png" style="margin-right:10px"></img> <b>UFEJI</b> </a>
                 <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -21,22 +39,17 @@
 
             <!-- begin header-nav -->
             <ul class="navbar-nav navbar-right">
-                
-               
+
+
                 <li class="dropdown navbar-user">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <div class="image image-icon bg-black text-grey-darker">
-                            <i class="fa fa-user"></i>
+                            <img class="MY_user-img" src="<?php echo ($datos_sesion_usuario['img'] != FALSE) ? $datos_sesion_usuario['img'] : 'data/img/usuario/guest.png' ?>" >
                         </div>
-                        <span class="d-none d-md-inline">Adam Schwartz</span> <b class="caret"></b>
+                        <span class="d-none d-md-inline"><?php echo ($datos_sesion_usuario['id'] > 0) ? $datos_sesion_usuario['nombre_completo'] . ' ' . $datos_sesion_usuario['apellido'] : "error a datos cargar session"; ?></span> <b class="caret"></b>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a href="javascript:;" class="dropdown-item">Edit Profile</a>
-                        <a href="javascript:;" class="dropdown-item"><span class="badge badge-danger pull-right">2</span> Inbox</a>
-                        <a href="javascript:;" class="dropdown-item">Calendar</a>
-                        <a href="javascript:;" class="dropdown-item">Setting</a>
-                        <div class="dropdown-divider"></div>
-                        <a href="javascript:;" class="dropdown-item">Log Out</a>
+                        <a href="javascript:void(0);" id="cerrar_sesion" class="dropdown-item">Cerrar Sesion</a>
                     </div>
                 </li>
             </ul>
@@ -82,15 +95,15 @@
                         </a>
                     </li>
                     <li>
-                        <a href="eventos" data-toggle="ajax">
+                        <a href="eventos/admin_crud" data-toggle="ajax">
                             <i class="fa fa-user"></i>
                             <span>Eventos</span>
                         </a>
                     </li>
-                    
+
                     </li>
                     <!-- begin sidebar minify button -->
-                  
+
                     <!-- end sidebar minify button -->
                 </ul>
                 <!-- end sidebar nav -->

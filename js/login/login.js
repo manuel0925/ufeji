@@ -24,5 +24,9 @@ $("#btn_inicio_de_sesion").on('click', function (e) {
     }
 });
 
-$()
+$("#frm_login").keypress(function(e){
+    if(e.which == 13){
+       $("#btn_inicio_de_sesion").click();
+    }
+})
 

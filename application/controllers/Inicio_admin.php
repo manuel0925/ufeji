@@ -1,8 +1,9 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Inicio_admin extends CI_Controller {
+class Inicio_admin extends CI_Controller
+{
 
     /**
      * Index Page for this controller.
@@ -19,12 +20,15 @@ class Inicio_admin extends CI_Controller {
      * map to /index.php/welcome/<method_name>
      * @see https://codeigniter.com/user_guide/general/urls.html
      */
-    public function index() {
-        
+    public function index()
+    {
+
         if ($this->session->id > 0) {
 
 
             $datos_usuarios = new stdClass();
+
+
 
 
             foreach ($this->session->userdata() as $key => $value) {
@@ -32,11 +36,11 @@ class Inicio_admin extends CI_Controller {
             }
 
 
+
             $data['datos_sesion_usuario'] = (array) $datos_usuarios;
         }
 
 
-        $this->load->view('inicio/inicio_admin');
+        $this->load->view('inicio/inicio_admin', $data);
     }
-
 }

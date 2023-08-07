@@ -79,7 +79,7 @@
                     <div class=" collapse navbar-collapse" id="navbar-collapse">
                         <ul class="nav">
                             <li class="menu_header"><a name="inicio"  class="menu_item" href="javascript:void(0);">Inicio</a></li>
-                            <li class="menu_header"><a name="evento"  class="menu_item" href="javascript:void(0);">Eventos</a></li>
+                            <li class="menu_header"><a name="eventos"  class="menu_item" href="javascript:void(0);">Eventos</a></li>
                             <li class="menu_header"><a name="noticia"  class="menu_item" href="javascript:void(0);">Noticias</a></li>
                             <li class="menu_header"><a name="acercade"  class="menu_item" href="javascript:void(0);">Acerca de Nosotro</a></li>
                             <li class="menu_header"><a name="preguntasf"  class="menu_item" href="javascript:void(0);">Preguntas freceuntes</a></li>

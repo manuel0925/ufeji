@@ -2,7 +2,7 @@
 /*echo "<pre>";
 print_r($datos_evento);
 echo "</pre>";*/
-?>
+?>                                          
 <style>
     .ui-autocomplete {
         z-index: 2147483647;

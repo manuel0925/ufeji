@@ -46,8 +46,12 @@ class Inicio extends CI_Controller {
 
     public function cargar_pagina_menu($menu) {
         $menu = base64_decode($menu);
+        
 
         $this->load->view($menu."_frontend/" . $menu, $data);
     }
+
+
+    
 
 }

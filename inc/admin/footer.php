@@ -14,7 +14,7 @@
     });
 </script>
 <script src="assets/admin/plugins/moment/moment.js"></script>
-<script src="js/libreria_funciones_propias/funciones.js"></script>
+<script src="js/inicio_admin/inicio_admin.js"></script>
 <!-- ================== END BASE JS ================== -->
 </body>
 </html>

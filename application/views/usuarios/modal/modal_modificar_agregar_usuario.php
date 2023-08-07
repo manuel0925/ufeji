@@ -133,12 +133,12 @@
 
 <script>
     $.mask.definitions['h']="[8]";
-    $.mask.definitions['i']="[049]";
+    $.mask.definitions['i']="[042]";
     $.mask.definitions['j']="[9]";
     
     jQuery(function($) {
         $("#telefono").mask("(hij)999-9999");
-        $("#cedula").mask("999999999");
+        $("#cedula").mask("99999999999");
     });
 
     var $frm_modficar_agregar_usuario = $("#frm_modficar_agregar_usuario");

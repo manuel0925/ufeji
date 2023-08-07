@@ -2,28 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/var/www/html/ufeji/application/views/acercade_frontend/acercade.php</file>
-            <file>file:/var/www/html/ufeji/application/controllers/Login.php</file>
-            <file>file:/var/www/html/ufeji/application/views/preguntasf_frontend/preguntasf.php</file>
-            <file>file:/var/www/html/ufeji/application/views/inicio/footer.php</file>
-            <file>file:/var/www/html/ufeji/js/eventos/eventos.js</file>
-            <file>file:/var/www/html/ufeji/application/controllers/Inicio.php</file>
-            <file>file:/var/www/html/ufeji/application/models/Login_model.php</file>
-            <file>file:/var/www/html/ufeji/js/inicio_frontend/inicio_frontend.js</file>
-            <file>file:/var/www/html/ufeji/application/views/contacto_frontend/contacto.php</file>
-            <file>file:/var/www/html/ufeji/application/views/usuarios/usuarios.php</file>
-            <file>file:/var/www/html/ufeji/application/views/noticia_frontend/noticia.php</file>
-            <file>file:/var/www/html/ufeji/application/models/Usuarios_model.php</file>
-            <file>file:/var/www/html/ufeji/application/views/inicio/menu.php</file>
-            <file>file:/var/www/html/ufeji/application/views/eventos/eventos.php</file>
-            <file>file:/var/www/html/ufeji/application/controllers/Usuarios.php</file>
-            <file>file:/var/www/html/ufeji/application/views/inicio/inicio_frontend.php</file>
-            <file>file:/var/www/html/ufeji/application/models/Eventos_model.php</file>
-            <file>file:/var/www/html/ufeji/application/views/usuarios/modal/modal_modificar_agregar_usuario.php</file>
-            <file>file:/var/www/html/ufeji/application/views/inicio/inicio_admin.php</file>
-            <file>file:/var/www/html/ufeji/application/controllers/Eventos.php</file>
-            <file>file:/var/www/html/ufeji/application/views/evento_frontend/evento.php</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
